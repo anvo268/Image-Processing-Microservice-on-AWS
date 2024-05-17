@@ -14,6 +14,7 @@ import Jimp from "jimp";
   return new Promise(async (resolve, reject) => {
     try {
       // Convert input URL to Buffer to help with handling unexpected image formats
+      // Ref: https://knowledge.udacity.com/questions/994301
       const photoBuffer = await axios.get(inputURL, {
         responseType: "arraybuffer"
       });
