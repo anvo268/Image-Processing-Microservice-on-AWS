@@ -3,13 +3,13 @@ import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
 import path from 'path';
 
-  console.log("Entered the server.js file!!");
+  // console.log("Entered the server.js file!!"); // Debugging
 
 
   // Init the Express application
   const app = express();
 
-  console.log("Express App initiated!");
+  // console.log("Express App initiated!"); // Debugging
 
   // Set the network port
   const port = process.env.PORT || 8082;
@@ -17,7 +17,7 @@ import path from 'path';
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
 
-  console.log("Body parser thing worked!");
+  // console.log("Body parser thing worked!"); // Debugging 
 
   // @TODO1 IMPLEMENT A RESTFUL ENDPOINT
   // GET /filteredimage?image_url={{URL}}
@@ -60,13 +60,14 @@ import path from 'path';
           // Download the filtered image locally and store the new path in filteredPath
           const filteredPath = await filterImageFromURL(image_url);
 
-          console.log("File downloaded?");
-          console.log("Filtered Path: ", filteredPath);
+          // Debugging
+          // console.log("File downloaded?");
+          // console.log("Filtered Path: ", filteredPath);
 
           // Send the filtered image back to the client
           res.status(200).sendFile(filteredPath);
 
-          console.log("File sent?");
+          // console.log("File sent?"); // Debugging
 
           // Delete the downloaded image from the server
           res.on('finish', () => deleteLocalFiles([filteredPath]));
